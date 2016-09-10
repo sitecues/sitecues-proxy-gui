@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title>sitecues Proxy</title>
+    <meta name="author" content="Sitecues by Ai Squared">
+    <meta name="description" content="A user interface for the Sitecues Proxy.">
+    <meta name="keywords" content="sitecues,proxy,gui">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Calibri, sans-serif;
+        }
+        body {
+            font-size: 5vmin;
+            background-color: #333333;
+            color: #FFFFFF;
+            text-align: center;
+        }
+        h1 {
+            padding: 0.5em 0 0;
+        }
+        #power {
+            display: inline-block;
+            width  : 20em;
+            background: #00FF00;
+        }
+        #url-picker {
+            padding: 0.8em 0;
+        }
+        #description {
+            display: block;
+        }
+        #url {
+            font-size: 0.65em;
+            margin: 1.5em auto 2.2em;
+            padding: 0.15em 0.8em 0;
+            width: 12.8em;
+            height: 1.85em;
+            border-radius: 7px;
+        }
+        #url-submit {
+            display: block;
+            font-size: 0.6em;
+            margin: 0 auto;
+            color: #FFFFFF;
+            width: 3.5em;
+            height: 3.5em;
+            border-radius: 50%;
+            background: #0000FF;
+        }
+    </style>
+    <script>
+        // Cross-platform app opener.
+        var open = require('opn');
+        var gui = require('nw.gui');
+        var win = gui.Window.get();
+        var nativeMenuBar = new gui.Menu({ type : "menubar" });
+
+        nativeMenuBar.createMacBuiltin('sitecues Proxy');
+        win.menu = nativeMenuBar;
+
+        win.on('close', function () {
+            gui.App.quit();
+        });
+        addEventListener('load', function () {
+            // Make the window visible.
+            win.show();
+            win.focus();
+        });
+    </script>
+</head>
+<body>
+	<h1>The sitecues&reg; Proxy</h1>
+    <form id="url-picker" autocomplete="on" autofocus>
+        <label for="power">Power:</label>
+        <input type="checkbox" id="power"></input>
+        <label id="description" for="url">Use sitecues in any browser.</label>
+        <input id="url" type="text" placeholder="http://sitecues.com" maxlength="1800"></input>
+        <button id="url-submit" type="submit">Go</button>
+    </form>
+    <script>
+        (function () {
+            'use strict';
+
+            var defaultUrl = 'https://www.sitecues.com';
+            var urlPicker   = document.querySelector('#url-picker');
+            var url = urlPicker.querySelector('#url');
+
+            function onUrlSubmit(event) {
+                // Avoid making any HTTP requests.
+                event.preventDefault();
+
+                open(url.value || defaultUrl);
+            }
+            urlPicker.addEventListener('submit', onUrlSubmit, false);
+
+            // document.querySelector('#power').addEventListener(
+            //     'click',
+            //     function (event) {
+            //         event.preventDefault();
+            //     },
+            //     true
+            // );
+        }());
+    </script>
+</body>
+</html>

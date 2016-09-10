@@ -1,0 +1,63 @@
+{
+  "name": "sitecues-proxy-gui",
+  "version": "0.0.1",
+  "description": "The Sitecues Proxy as a desktop app.",
+  "homepage": "https://github.com/sitecues/sitecues-proxy-gui",
+  "main": "view/index.html",
+  "author": {
+    "name": "Seth Holladay",
+    "url": "http://seth-holladay.com",
+    "email": "me@seth-holladay.com"
+  },
+  "scripts": {
+    "start": "nw",
+    "test": "xo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sitecues/sitecues-proxy-gui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sitecues/sitecues-proxy-gui/issues",
+    "email": "me@seth-holladay.com"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "nw": "^0.17.1",
+    "opn": "^4.0.2"
+  },
+  "devDependencies": {
+    "eslint-config-tidy": "^0.3.0",
+    "xo": "^0.16.0"
+  },
+  "keywords": [
+    "proxy",
+    "desktop",
+    "gui",
+    "app"
+  ],
+  "xo": {
+    "extend": "tidy"
+  },
+  "single-instance": true,
+  "window": {
+    "title": "sitecues Proxy",
+    "position": "center",
+    "show": false,
+    "width": 650,
+    "height": 650,
+    "min_width": 300,
+    "min_height": 300,
+    "toolbar": false,
+    "frame": true,
+    "transparent": false,
+    "icon": "sitecues-icon.png"
+  },
+  "chromium-args": "--child-clean-exit"
+}
